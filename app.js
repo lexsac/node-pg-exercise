@@ -2,11 +2,14 @@
 
 
 const express = require("express");
-
 const app = express();
 const ExpressError = require("./expressError")
 
 app.use(express.json());
+
+
+const cRoutes = require("./routes/companies");
+app.use("/companies", cRoutes);
 
 
 /** 404 handler */
@@ -27,5 +30,8 @@ app.use((err, req, res, next) => {
   });
 });
 
+app.listen(3000, function() {
+  console.log(`Server starting on port 3000`);
+});
 
 module.exports = app;
